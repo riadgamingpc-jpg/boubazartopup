@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOU BAZAR TOP UP</title>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f0f2f5;
+  margin:0;
+}
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#6f4cff;
+  color:white;
+  padding:15px 20px;
+  box-shadow:0 3px 6px rgba(0,0,0,0.2);
+}
+.logo{
+  font-size:22px;
+  font-weight:bold;
+}
+.btn{
+  padding:8px 15px;
+  border:none;
+  border-radius:6px;
+  margin-left:5px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.login{
+  background:white;
+  color:#6f4cff;
+}
+.section{
+  margin:20px;
+  padding:20px;
+  background:white;
+  border-radius:12px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+.packages{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-bottom:20px;
+}
+.box{
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  cursor:pointer;
+  transition:0.3s;
+  position:relative;
+}
+.box:hover{
+  transform:translateY(-3px);
+  box-shadow:0 5px 12px rgba(0,0,0,0.2);
+}
+.price{
+  position:absolute;
+  top:15px;
+  right:15px;
+  font-weight:bold;
+  color:#6f4cff;
+}
+input, select{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+.order{
+  width:100%;
+  padding:14px;
+  margin-top:15px;
+  border:none;
+  border-radius:8px;
+  background:#00c853;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+.order:hover{
+  background:#00e676;
+}
+.payment{
+  background:#fff3cd;
+  padding:12px;
+  border-radius:8px;
+  margin-top:15px;
+  text-align:center;
+}
+.copy-btn{
+  margin-top:5px;
+  padding:6px 12px;
+  border:none;
+  border-radius:6px;
+  background:#6f4cff;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+#status{
+  margin-top:12px;
+  font-weight:bold;
+  color:green;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">BOU BAZAR TOPUP</div>
+  <div>
+    <button class="btn">Register</button>
+    <button class="btn login">Login</button>
+  </div>
+</div>
+
+<!-- Diamond Packages -->
+<div class="section">
+<h3>Diamond Packages</h3>
+<div class="packages">
+  <div class="box">25 Diamond 💎<span class="price">22 TK</span></div>
+  <div class="box">50 Diamond 💎<span class="price">39 TK</span></div>
+  <div class="box">115 Diamond 💎<span class="price">75 TK</span></div>
+  <div class="box">240 Diamond 💎<span class="price">150 TK</span></div>
+  <div class="box">355 Diamond 💎<span class="price">240 TK</span></div>
+  <div class="box">480 Diamond 💎<span class="price">300 TK</span></div>
+  <div class="box">610 Diamond 💎<span class="price">380 TK</span></div>
+  <div class="box">850 Diamond 💎<span class="price">540 TK</span></div>
+</div>
+
+<h3>Weekly / Monthly Packages</h3>
+<div class="packages">
+  <div class="box">Weekly <span class="price">150 TK</span></div>
+  <div class="box">Monthly <span class="price">750 TK</span></div>
+</div>
+</div>
+
+<!-- Account & EVO Gun Section -->
+<div class="section">
+<h3>Player UID</h3>
+<input type="text" id="playerUid" placeholder="Enter Player UID">
+
+<h3>Payment Method</h3>
+<select id="paymentMethod">
+  <option>Select Payment Method</option>
+  <option>bKash</option>
+  <option>Nagad</option>
+</select>
+
+<h3>EVO Gun Level Up Pass</h3>
+<select id="levelPass">
+  <option>Select Duration & Price</option>
+  <option>3 Days - 70 TK</option>
+  <option>5 Days - 75 TK</option>
+  <option>10 Days - 85 TK</option>
+  <option>30 Days - 340 TK</option>
+  <option>60 Days - 700 TK</option>
+</select>
+
+<h3>Special Diamond Pack</h3>
+<div>700 Diamond 💎 - 340 TK - 60</div>
+
+<button class="order" onclick="placeOrder()">Order Now</button>
+
+<div class="payment">
+Payment Number:<br>
+<b id="paymentNumber">01851634841</b>
+<button class="copy-btn" onclick="copyNumber()">Copy Number</button>
+</div>
+
+<div id="status"></div>
+</div>
+
+<script>
+function copyNumber(){
+  const number = document.getElementById("paymentNumber").innerText;
+  navigator.clipboard.writeText(number);
+  alert("Payment number copied: " + number);
+}
+
+function placeOrder(){
+  const uid = document.getElementById("playerUid").value;
+  const method = document.getElementById("paymentMethod").value;
+  const pass = document.getElementById("levelPass").value;
+
+  if(uid === "" || method === "Select Payment Method" || pass === "Select Duration & Price"){
+    alert("Please fill all fields!");
+    return;
+  }
+
+  document.getElementById("status").innerText = "Order received! Diamond / Pass will be added in 1–5 minutes.";
+  alert("Order received! Please send payment to 01851634841 via " + method);
+}
+</script>
+
+</body>
+</html>
