@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Rh Top-Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ১. Account Info Section -->
+    <div class="section">
+        <h3>২. Account Info</h3>
+        <input type="text" id="uid" placeholder="এখানে গেমের আইডি কোড দিন">
+        <button onclick="checkUID()">আপনার গেম আইডির নাম চেক করুন</button>
+    </div>
+
+    <!-- ২. Package Section -->
+    <div class="section" id="package-section" style="display:none;">
+        <h3>১. Select Recharge</h3>
+        <div class="grid">
+            <div class="card" onclick="selectPackage('115 Diamond', 79)">
+                <p>115 Diamond</p><b>৭৯ টাকা</b>
+            </div>
+            <div class="card" onclick="selectPackage('355 Diamond', 237)">
+                <p>355 Diamond</p><b>২৩৭ টাকা</b>
+            </div>
+            <!-- এভাবে অন্যান্য প্যাকেজ যোগ করুন -->
+        </div>
+    </div>
+
+    <!-- ৩. Payment Section -->
+    <div class="section" id="payment-section" style="display:none;">
+        <h3>৩. Payment Method</h3>
+        <button>বিকাশ</button>
+        <button>নগদ</button>
+    </div>
+
+</body>
+</html>body { font-family: sans-serif; background: #f4f4f4; padding: 10px; }
+.section { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.card { border: 1px solid #ccc; padding: 10px; text-align: center; border-radius: 5px; cursor: pointer; }
+.card:hover { border-color: #6200ea; }
+button { width: 100%; padding: 10px; background: #6200ea; color: white; border: none; margin-top: 5px; }function checkUID() {
+    let uid = document.getElementById('uid').value;
+    if(uid.length > 5) {
+        // এখানে নাম ভেরিফাই হওয়ার পর প্যাকেজ সেকশন দেখাবে
+        document.getElementById('package-section').style.display = 'block';
+    } else {
+        alert("সঠিক আইডি দিন");
+    }
+}
+
+function selectPackage(name, price) {
+    alert(name + " সিলেক্ট করেছেন। দাম " + price + " টাকা।");
+    document.getElementById('payment-section').style.display = 'block';
+}
